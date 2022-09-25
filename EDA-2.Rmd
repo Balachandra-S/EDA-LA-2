@@ -1,0 +1,91 @@
+---
+title: "EDA-2"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+date: "2022-09-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+getwd()
+```
+
+```{r}
+df=read.csv('heart.csv')
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+ggplot(df,aes(x=age, y=chol))+
+  geom_col(sex='1')
+```
+
+```{r}
+plot(df$age,df$chol)
+```
+
+```{r}
+library(ggplot2)
+ggplot(df, aes(x = age, y = chol)) +geom_point()
+
+ggplot(data = NULL, aes(x =df$sex, y=df$chol)) +
+geom_point()
+```
+
+```{r}
+plot(df$age,type = "l")
+```
+
+```{r}
+plot(head(df$age),head(df$chol),  type = "l")
+points(head(df$age),head(df$chol))
+```
+
+```{r}
+ggplot(head(df,n=20), aes(x = age, y = chol)) +geom_line()
+ggplot(head(df,n=20), aes(x = age, y = chol)) +geom_line()+geom_point()
+```
+
+```{r}
+barplot(head(df$sex), names.arg = head(df$age))
+```
+
+```{r}
+barplot(table(df$chol))
+```
+
+```{r}
+hist(df$age)
+# Specify approximate number of bins with breaks
+hist(df$age, breaks = 10)
+```
+
